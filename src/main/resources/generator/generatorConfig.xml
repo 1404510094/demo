@@ -15,6 +15,10 @@
         <!-- 自动生成tostring -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
 
+        <commentGenerator >
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
         <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/springdemo"
@@ -65,7 +69,7 @@
         <!--生成接口存放位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.domain.dao" targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
-            <property name="enableSubPackages" value="true"/>
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
@@ -75,7 +79,7 @@
             <!-- generatedKey用于生成生成主键的方法，
             如果设置了该元素，MBG会在生成的<insert>元素中生成一条正确的<selectKey>元素，该元素可选
             -->
-            <generatedKey column="" sqlStatement="MySql"/>
+            <generatedKey column="id" sqlStatement="MySql"/>
         </table>
     </context>
 </generatorConfiguration>
