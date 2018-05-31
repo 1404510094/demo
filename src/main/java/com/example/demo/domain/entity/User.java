@@ -1,12 +1,15 @@
 package com.example.demo.domain.entity;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 public class User implements Serializable {
     private Integer id;
 
+    @NotBlank(message = "密码不能为空")
     private String password;
 
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     private static final long serialVersionUID = 1L;
