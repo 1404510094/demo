@@ -1,6 +1,6 @@
 package com.example.demo.controller.impl;
 
-import com.example.demo.controller.UserController;
+import com.example.demo.common.result.Result;
 import com.example.demo.domain.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,45 +14,67 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
-public class UserControllerImpl implements UserController{
-
-
+public class UserControllerImpl{
 
     @Autowired
     private UserService userService;
 
-    @Override
     @Transactional
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteByPrimaryKey(Integer id) {
-        userService.deleteByPrimaryKey(id);
-        return "";
+    public Result deleteByPrimaryKey(Integer id){
+        Result result = new Result();
+
+        boolean success = userService.deleteByPrimaryKey(id);
+        result.setCode(1);
+        result.setMessage("");
+        result.setData(success);
+        return result;
     }
 
-    @Override
     @Transactional
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String insert(@Valid User record) {
+    public Result insert(@Valid User record) {
+        Result result = new Result();
+
         boolean success = userService.insert(record);
-        return success == true ? "成功" : "失败";
+        String message = success == true ? "成功" : "失败";
+        result.setCode(1);
+        result.setMessage(message);
+        result.setData(null);
+        return result;
     }
 
-    @Override
-    public String selectByPrimaryKey(Integer id) {
-        userService.selectByPrimaryKey(id);
+    @RequestMapping(value = "/query", method = RequestMethod.POST)
+    public Result selectByPrimaryKey(Integer id) {
+        System.out.print(id);
+        Result result = new Result();
+
+        User user = userService.selectByPrimaryKey(id);
+        result.setCode(1);
+        result.setMessage("");
+        result.setData(user);
         return null;
     }
 
-    @Override
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<User> selectAll() {
-        return userService.selectAll();
+    public Result selectAll() {
+        Result result = new Result();
+        List<User> users = userService.selectAll();
+        result.setCode(1);
+        result.setMessage("");
+        result.setData(users);
+        return result;
     }
 
-    @Override
     @Transactional
-    public String updateByPrimaryKey(User record) {
-        userService.updateByPrimaryKey(record);
-        return "";
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Result updateByPrimaryKey(User record) {
+        Result result = new Result();
+
+        boolean success = userService.updateByPrimaryKey(record);
+        result.setCode(1);
+        result.setMessage("");
+        result.setData(null);
+        return result;
     }
 }
