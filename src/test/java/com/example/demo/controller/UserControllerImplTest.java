@@ -1,4 +1,4 @@
-package com.example.demo.controller.impl;
+package com.example.demo.controller;
 
 import com.example.demo.domain.entity.User;
 import org.junit.Test;

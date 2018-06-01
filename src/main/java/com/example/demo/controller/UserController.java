@@ -1,18 +1,66 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.result.Result;
 import com.example.demo.domain.entity.User;
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
-public interface UserController{
+@RestController
+@RequestMapping(value = "/user")
+public class UserController {
 
-    String deleteByPrimaryKey(Integer id);
+    @Autowired
+    private UserService userService;
 
-    String insert(User record);
+    @Transactional
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public Result deleteByPrimaryKey(Integer id){
+        Result result = new Result();
 
-    String selectByPrimaryKey(Integer id);
+        boolean success = userService.deleteByPrimaryKey(id);
+        result.setData(success);
+        return result;
+    }
 
-    List<User> selectAll();
+    @Transactional
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public Result insert(@Valid User record) {
+        Result result = new Result();
 
-    String updateByPrimaryKey(User record);
+        boolean success = userService.insert(record);
+        return result;
+    }
+
+    @RequestMapping(value = "/query", method = RequestMethod.POST)
+    public Result selectByPrimaryKey(Integer id) {
+        Result result = new Result();
+
+        User user = userService.selectByPrimaryKey(id);
+        result.setData(user);
+        return result;
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public Result selectAll() {
+        Result result = new Result();
+        List<User> users = userService.selectAll();
+        result.setData(users);
+        return result;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Result updateByPrimaryKey(User record) {
+        Result result = new Result();
+
+        boolean success = userService.updateByPrimaryKey(record);
+        return result;
+    }
 }

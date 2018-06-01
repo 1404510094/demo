@@ -1,5 +1,6 @@
 package com.example.demo.aspect;
 
+import com.example.demo.common.result.Result;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -36,18 +37,14 @@ public class HttpAspect {
 
     @Before("log()")
     public void doAfterController(JoinPoint joinPoint) {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-
-        logger.info("http_url = {}", request.getRequestURI());
-        logger.info("http_method = {}", request.getMethod());
-        logger.info("http_ip = {}", request.getRemoteAddr());
-        logger.info("class_method = {}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.info("class_method_args = {}", joinPoint.getArgs());
     }
 
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturningController(Object object) {
+        if(object instanceof Result){
+            ((Result) object).setMessage("success");
+            ((Result) object).setCode(1);
+        }
         logger.info("response = {}", object);
     }
 

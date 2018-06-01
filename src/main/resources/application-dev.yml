@@ -44,7 +44,8 @@ pagehelper:
 
 logging:
   level:
-    mapper: debug
+    com.example.demo.domain.dao: debug
+
 
 
 
