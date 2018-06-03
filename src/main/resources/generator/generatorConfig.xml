@@ -67,7 +67,7 @@
         -->
 
         <!--生成接口存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.domain.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.dao" targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>

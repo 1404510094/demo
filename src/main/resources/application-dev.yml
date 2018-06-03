@@ -31,7 +31,7 @@ spring:
 #mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.demo.domain.entity
+  type-aliases-package: com.example.demo.domain
 
 
 #pagehelper分页插件
@@ -45,6 +45,8 @@ pagehelper:
 logging:
   level:
     com.example.demo.domain.dao: debug
+
+
 
 
 

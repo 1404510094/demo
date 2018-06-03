@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.entity.User;
+import com.example.demo.domain.User;
 import org.junit.Test;
 
 public class UserControllerImplTest {

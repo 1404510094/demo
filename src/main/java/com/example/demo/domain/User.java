@@ -1,4 +1,4 @@
-package com.example.demo.domain.entity;
+package com.example.demo.domain;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
