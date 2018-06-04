@@ -17,6 +17,7 @@ public class MyExceptionHandler {
         Result result = new Result();
         result.setCode(-1);
         result.setMessage("error");
+        e.printStackTrace();
         return result;
     }
 }
