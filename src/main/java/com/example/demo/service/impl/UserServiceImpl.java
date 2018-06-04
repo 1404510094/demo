@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService{
     public boolean updateByPrimaryKey(User record) {
         return userMapper.updateByPrimaryKey(record) > 0;
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return null;
+    }
 }

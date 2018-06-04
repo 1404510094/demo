@@ -14,4 +14,6 @@ public interface UserService {
     List<User> selectAll();
 
     boolean updateByPrimaryKey(User record);
+
+    User findByUsername(String username);
 }

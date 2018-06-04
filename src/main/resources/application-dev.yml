@@ -45,6 +45,7 @@ pagehelper:
 logging:
   level:
     com.example.demo.domain.dao: debug
+    org.springframework.security: debug
 
 
 
