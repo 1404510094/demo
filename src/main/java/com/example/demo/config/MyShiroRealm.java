@@ -2,10 +2,7 @@ package com.example.demo.config;
 
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -36,7 +33,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         //检测是否有此用户
         if(user == null){
-            return null;
+            throw new UnknownAccountException("用户不存在");
         }
 
         String password = user.getPassword();
