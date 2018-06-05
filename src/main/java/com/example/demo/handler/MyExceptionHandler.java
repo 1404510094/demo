@@ -30,7 +30,7 @@ public class MyExceptionHandler {
         Result result = new Result();
         logger.info("msg = {}", e.getMessage());
 
-        ResultEnum resultEnum = ResultEnum.SYSTEM_ERROR;
+        ResultEnum resultEnum = ResultEnum.UNKONW_ERROE;
         result.setCode(resultEnum.getCode());
         result.setMessage(resultEnum.getMessage());
 

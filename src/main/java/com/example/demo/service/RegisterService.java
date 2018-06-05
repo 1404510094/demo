@@ -4,9 +4,9 @@ import com.example.demo.domain.User;
 
 /**
  * @author:chengbg
- * @date:2018/6/4
+ * @date:2018/6/5
  */
-public interface LoginService {
+public interface RegisterService {
 
-    boolean login(User user);
+    boolean register(User user);
 }

@@ -2,16 +2,16 @@ package com.example.demo.domain;
 
 import java.io.Serializable;
 
-public class Permission implements Serializable {
+public class Role implements Serializable {
     private Integer id;
 
     private String name;
 
+    private String code;
+
     private Integer parentid;
 
     private Integer available;
-
-    private byte[] code;
 
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,14 @@ public class Permission implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
     public Integer getParentid() {
         return parentid;
     }
@@ -47,14 +55,6 @@ public class Permission implements Serializable {
         this.available = available;
     }
 
-    public byte[] getCode() {
-        return code;
-    }
-
-    public void setCode(byte[] code) {
-        this.code = code;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -63,9 +63,9 @@ public class Permission implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", code=").append(code);
         sb.append(", parentid=").append(parentid);
         sb.append(", available=").append(available);
-        sb.append(", code=").append(code);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

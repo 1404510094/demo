@@ -6,6 +6,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -37,10 +38,13 @@ public class MyShiroRealm extends AuthorizingRealm {
         }
 
         String password = user.getPassword();
+        ByteSource salt = ByteSource.Util.bytes(user.getSalt());
+
         //认证信息
         SimpleAuthenticationInfo authenticationInfo =
-                new SimpleAuthenticationInfo(username, password, getName());
+                new SimpleAuthenticationInfo(username, password, salt, getName());
 
         return authenticationInfo;
     }
+
 }

@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.common.result.Result;
 import com.example.demo.domain.User;
-import com.example.demo.service.LoginService;
+import com.example.demo.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,20 +12,20 @@ import javax.validation.Valid;
 
 /**
  * @author:chengbg
- * @date:2018/6/4
+ * @date:2018/6/5
  */
 @RestController
 @RequestMapping(value = "/user")
-public class LoginController {
+public class RegisterController {
 
     @Autowired
-    private LoginService loginService;
+    private RegisterService registerService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Result login(@Valid User user) {
         Result result = new Result();
-        boolean login = loginService.login(user);
-        result.setData(login);
+        boolean success = registerService.register(user);
+        result.setData(success);
         return result;
     }
 }

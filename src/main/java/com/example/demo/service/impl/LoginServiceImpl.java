@@ -1,14 +1,19 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.domain.User;
 import com.example.demo.common.enums.ResultEnum;
 import com.example.demo.common.exception.BusinessException;
+import com.example.demo.dao.UserMapper;
+import com.example.demo.domain.User;
+import com.example.demo.handler.MyExceptionHandler;
 import com.example.demo.service.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +22,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LoginServiceImpl implements LoginService{
+
+    private static final Logger logger = LoggerFactory.getLogger(MyExceptionHandler.class);
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public boolean login(User user) {
@@ -34,7 +44,7 @@ public class LoginServiceImpl implements LoginService{
             throw new BusinessException(ResultEnum.UNKONW_USER);
         } catch (IncorrectCredentialsException e){
             //密码错误
-            throw new BusinessException(ResultEnum.PASSWORD_ERROR);
+            throw new BusinessException(ResultEnum.UNKONW_USER);
         }
         //判断是否认证成功
         boolean authenticated = subject.isAuthenticated();

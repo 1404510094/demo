@@ -32,7 +32,7 @@
         </javaTypeResolver>
 
         <!--生成java类存放位置-->
-        <javaModelGenerator targetPackage="com.example.demo.domain.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.example.demo.domain" targetProject="src/main/java">
             <!--  for MyBatis3/MyBatis3Simple
                 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
             -->
@@ -73,12 +73,20 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="user" domainObjectName="User" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+        <table tableName="user" domainObjectName="User" >
             <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
             <!-- generatedKey用于生成生成主键的方法，
             如果设置了该元素，MBG会在生成的<insert>元素中生成一条正确的<selectKey>元素，该元素可选
             -->
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+        <table tableName="role" domainObjectName="Role" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+        <table tableName="permission" domainObjectName="Permission" >
+            <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
     </context>

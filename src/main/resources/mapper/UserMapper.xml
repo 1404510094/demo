@@ -5,35 +5,44 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.demo.domain.User" >
-    insert into user (id, password, username
-      )
-    values (#{id,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (id, password, username, 
+      state, name, salt)
+    values (#{id,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.User" >
     update user
     set password = #{password,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR}
+      username = #{username,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, password, username
+    select id, password, username, state, name, salt
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select id, password, username
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, password, username, state, name, salt
+    from user
+  </select>
+  <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id, password, username, state, name, salt
     from user
     where username = #{username,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, password, username
-    from user
   </select>
 </mapper>

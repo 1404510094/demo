@@ -6,11 +6,17 @@ import java.io.Serializable;
 public class User implements Serializable {
     private Integer id;
 
-    @NotBlank(message = "密码不能为空")
+    @NotBlank
     private String password;
 
-    @NotBlank(message = "用户名不能为空")
+    @NotBlank
     private String username;
+
+    private Integer state;
+
+    private String name;
+
+    private String salt;
 
     private static final long serialVersionUID = 1L;
 
@@ -38,6 +44,30 @@ public class User implements Serializable {
         this.username = username == null ? null : username.trim();
     }
 
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -47,6 +77,9 @@ public class User implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", password=").append(password);
         sb.append(", username=").append(username);
+        sb.append(", state=").append(state);
+        sb.append(", name=").append(name);
+        sb.append(", salt=").append(salt);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

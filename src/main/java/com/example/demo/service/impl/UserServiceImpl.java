@@ -2,7 +2,10 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dao.UserMapper;
 import com.example.demo.domain.User;
+import com.example.demo.handler.MyExceptionHandler;
 import com.example.demo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +14,8 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
+
+    private static final Logger logger = LoggerFactory.getLogger(MyExceptionHandler.class);
 
     @Autowired
     private UserMapper userMapper;
