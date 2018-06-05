@@ -20,8 +20,8 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public Result login(@Valid User user){
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result login(@Valid User user) {
         Result result = new Result();
         boolean login = loginService.login(user);
         result.setData(login);

@@ -4,7 +4,6 @@ import com.example.demo.common.result.Result;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Transactional
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public Result deleteByPrimaryKey(Integer id){
         Result result = new Result();
@@ -29,7 +27,6 @@ public class UserController {
         return result;
     }
 
-    @Transactional
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Result insert(@Valid User record) {
         Result result = new Result();
@@ -55,7 +52,6 @@ public class UserController {
         return result;
     }
 
-    @Transactional
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Result updateByPrimaryKey(User record) {
         Result result = new Result();

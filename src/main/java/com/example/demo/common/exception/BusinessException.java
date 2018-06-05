@@ -1,6 +1,6 @@
-package com.example.demo.exception;
+package com.example.demo.common.exception;
 
-import com.example.demo.enums.ResultEnum;
+import com.example.demo.common.enums.ResultEnum;
 
 /**
  * @author:chengbg

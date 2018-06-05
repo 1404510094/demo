@@ -5,6 +5,7 @@ import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,11 +19,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public boolean deleteByPrimaryKey(Integer id) {
         return userMapper.deleteByPrimaryKey(id) > 0;
     }
 
     @Override
+    @Transactional
     public boolean insert(User record) {
         return userMapper.insert(record) > 0;
     }
@@ -38,6 +41,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public boolean updateByPrimaryKey(User record) {
         return userMapper.updateByPrimaryKey(record) > 0;
     }
